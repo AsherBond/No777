@@ -1,0 +1,29 @@
+#!/bin/bash
+# Asher Bond 2011
+# no777 - stops 777 chmodders in their tracks
+# and keeps them off my cloud ...
+# and maybe even keeps a few closer to the outside of the industry bubble ...
+# it works by auditing promiscuous file/dir permissions and then taking them away from those files.
+# this will enforce file permissions in such a way that files are not readable, writeable, or executable by all.
+
+USAGE='USAGE: no777 <dir>'
+
+LOG='/var/log/no777.log'
+PROMISCUOUS='-perm -o=w'
+
+if [ -z $1 ]; then
+	echo $USAGE
+	exit
+fi
+
+mydate=`date -u --rfc-3339=ns`
+
+dir=$1
+
+echo "$dir @ $mydate:" | tee $LOG
+find $1 $PROMISCUOUS | tee $LOG
+
+
+cd $dir
+chmod -R o-rwx .
+
