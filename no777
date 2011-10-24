@@ -22,8 +22,8 @@ mydate=`date -u --rfc-3339=ns`
 
 dir=$1
 
-echo "$dir @ $mydate:" | tee $LOG
-find $1 $PROMISCUOUS | tee $LOG
+echo "$dir @ $mydate:" | tee -a $LOG
+find $1 $PROMISCUOUS | tee -a $LOG
 
 
 cd $dir
