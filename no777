@@ -7,6 +7,9 @@
 # and maybe even keeps a few closer to the outside of the industry bubble ...
 # it works by auditing promiscuous file/dir permissions and then taking them away from those files.
 # this will enforce file permissions in such a way that files are not readable, writeable, or executable by all.
+#
+# You should also check /etc/profile and /etc/login.defs to properly configure a umask.
+# 007 is a good way to keep the spies contained in a multi-user system.
 
 USAGE='USAGE: no777 <dir>'
 
